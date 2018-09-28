@@ -3,7 +3,7 @@ define("config", [], function () {
     require.config({
         urlArgs: "V1.0.1",
         baseUrl: "./js/",
-        waitSeconds: 15,
+        waitSeconds: 0,
         paths: {
             //插件
             "jquery": ["lib/jquery/jquery-1.11.1.min", "http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min"],
@@ -18,6 +18,9 @@ define("config", [], function () {
 
         },
         shim: {
+            // "register": {
+            //     deps: ["css!../css/register"],
+            // },
             "md5": {
                 deps: ["jquery"],
             },
@@ -29,16 +32,13 @@ define("config", [], function () {
             "idcode": {
                 deps: ["jquery"],
             },
-            "register": {
-                deps: ["css!../css/register.css"]
-            },
-            "bootstrap": {
-                deps: ["css!lib/bootstrap/css/bootstrap.css"],
-            }
+            // "bootstrap": {
+            //     deps: ["css!lib/bootstrap/css/bootstrap.css"],
+            // }
         },
         map: {
             '*': {
-                'css': 'lib/require/css' //帮助我们导入 css.js文件
+                'css': ["lib/require/css"] //帮助我们导入 css.js文件
             }
         },
     })
