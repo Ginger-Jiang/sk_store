@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="js/lib/require/require.js" data-main="js/main.js"></script>
-    <link rel="stylesheet" href="./js/lib/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="./css/register.css">
+    <script src="../js/lib/require/require.js" data-main="../js/main.js"></script>
+    <!-- <link rel="stylesheet" href="../js/lib/bootstrap/css/bootstrap.css"> -->
+    <link rel="stylesheet" href="../css/register.css">
     <title>寺库-注册</title>
 </head>
 
@@ -15,7 +15,7 @@
     <!-- 顶部通栏 -->
     <header class="sk_re_header">
         <div class="logo">
-            <a href=""><img src="./img/register/logo.png" alt=""></a>
+            <a href=""><img src="../img/register/logo.png" alt=""></a>
         </div>
         <div class="link">
             <ul>
@@ -31,29 +31,38 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-4" id="re_form">
-                    <form action="">
-                        <p>
-                            <label for="">用&nbsp&nbsp户&nbsp&nbsp名: <span>请输入手机号或者邮箱</span class="show"></label>
-                            <input type="text">
+                    <form action="" id="sk_re_form">
+                        <p class="uname">
+                            <label >用&nbsp&nbsp户&nbsp&nbsp名:
+                                <span class="firstspan" id="errorTxt">请输入手机号或者邮箱</span>
+                            </label>
+                            <input type="text" name="uName">
                         </p>
-                        <p>
-                            <label for="">密&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp码: <span class="show"></span></label>
-                            <input type="text">
+                        <p class="idcode hide">
+                            <label >验&nbsp&nbsp证&nbsp&nbsp码:</label>
+                            <input type="text" class="verify" name="idCode" id="Txtidcode">
+                            <em id="idcode"></em>
+                            <input type="text" class="uMsg verify">
+                            <a>获取短信验证码</a>
                         </p>
-                        <p>
-                            <label for="">确认密码: <span></span class="show"></label>
-                            <input type="text">
+                        <p class="upwd">
+                            <label >密&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp码:<span class="hide error">请输入密码！</span></label>
+                            <input type="text" name="uPwd">
                         </p>
-                        <p>
-                            <input type="checkbox">
+                        <p class="upwd1">
+                            <label >确认密码:<span class="hide error ">请再次确认密码</span></label>
+                            <input type="text" name="uPwd1">
+                        </p>
+                        <p class="yqm ">
+                            <input type="checkbox" name="uYqm">
                             <span>贵宾邀请码</span>
-                            <input type="text" id="yqm">
+                            <input type="text" id="yqm" class="uYqm_txt hide">
                         </p>
                         <p>
                             <button>立即注册</button>
                         </p>
                         <p>
-                            <input type="checkbox" checked>
+                            <input type="checkbox" checked name="uXy">
                             <i>我已阅读并同意《寺库网用户注册协议》</i>
                         </p>
                     </form>
@@ -103,11 +112,11 @@
             </p>
             <p>COPYRIGHT © 2010-2017 北京寺库商贸有限公司 版权所有</p>
             <p>
-                <a href=""><img src="./img/register/f_0.jpg" alt=""></a>
-                <a href=""><img src="./img/register/f_1.jpg" alt=""></a>
-                <a href=""><img src="./img/register/f_2.png" alt=""></a>
-                <a href=""><img src="./img/register/f_3.jpg" alt=""></a>
-                <a href=""><img src="./img/register/f_4.jpg" alt=""></a>
+                <a href=""><img src="../img/register/f_0.jpg" alt=""></a>
+                <a href=""><img src="../img/register/f_1.jpg" alt=""></a>
+                <a href=""><img src="../img/register/f_2.png" alt=""></a>
+                <a href=""><img src="../img/register/f_3.jpg" alt=""></a>
+                <a href=""><img src="../img/register/f_4.jpg" alt=""></a>
             </p>
         </div>
     </footer>

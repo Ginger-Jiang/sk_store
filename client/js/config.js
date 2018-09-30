@@ -2,7 +2,7 @@
 define("config", [], function () {
     require.config({
         urlArgs: "V1.0.1",
-        baseUrl: "./js/",
+        baseUrl: "./../js/",
         waitSeconds: 0,
         paths: {
             //插件
@@ -36,10 +36,10 @@ define("config", [], function () {
             //     deps: ["css!lib/bootstrap/css/bootstrap.css"],
             // }
         },
-        map: {
-            '*': {
-                'css': ["lib/require/css"] //帮助我们导入 css.js文件
-            }
-        },
+        // map: {
+        //     '*': {
+        //         'css': ["lib/require/css"] //帮助我们导入 css.js文件
+        //     }
+        // },
     })
 })
