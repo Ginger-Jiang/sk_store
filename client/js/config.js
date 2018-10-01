@@ -15,6 +15,7 @@ define("config", [], function () {
 
             //功能
             "register": ["register"], //-->注册模块
+            "login":["login"], //-->登录模块
 
         },
         shim: {

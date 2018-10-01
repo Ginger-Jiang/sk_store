@@ -162,6 +162,7 @@ define("register", ["jquery", "md5", "idcode", ], function () {
             })
         })();
     }
+
     // 注册成功
     function submitInfo() {
         let pwdVal = $.md5($("[name=uPwd]").val());
@@ -174,12 +175,14 @@ define("register", ["jquery", "md5", "idcode", ], function () {
                 uName: $("[name=uName]").val(),
                 uPwd: pwdVal,
             },
-            type:"post",
+            type: "post",
 
         }).then(function (res) {
             if (res==true) {
                 alert("注册成功,点击确认跳转至首页");
-                window.location = ("../index.html");
+                window.location("../html/login.html")
+            } else {
+                alert("注册失败")
             }
         })
     }

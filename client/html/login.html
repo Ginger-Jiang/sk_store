@@ -1,121 +1,132 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
-    <title>登录</title>
-    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/base.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="../js/lib/require/require.js" data-main="../js/main.js"></script>
+    <link rel="stylesheet" href="../css/font_icon.css">
     <link rel="stylesheet" href="../css/login.css">
-    <!--[if lt IE 9]>
-    <script src="../lib/html5shiv/html5shiv.min.js"></script>
-    <script src="../lib/respond/respond.min.js"></script>
-    <![endif]-->
+    <title>寺库-登录</title>
 </head>
 
 <body>
-    <!-- 头部 -->
-    <header class="sk_topBar">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                    <a href="../index.html">
-                        <img src="../img/register/logo.png" alt="">
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-8 pull-right links">
-                    <a href="">寺库首页</a>
-                    <a href="">收藏寺库</a>
-                    <a href="">寺库APP</a>
-                </div>
-            </div>
+    <!-- 顶部通栏 -->
+    <header id="sk_lg_header">
+        <div class="logo">
+            <a href=""><img src="../img/register/logo.png" alt=""></a>
+        </div>
+        <div class="link">
+            <ul>
+                <li><a href="">寺库首页</a></li>
+                <li><a href="">收藏寺库</a></li>
+                <li><a href="">寺库APP</a></li>
+            </ul>
         </div>
     </header>
 
-    <!-- 中部 -->
-    <section class="sk_content">
-        <div class="login">
-            <div class="login_title">
-                <p class='active'>扫码登录</p>
-                <p>密码登录</p>
-            </div>
-            <div class="login_content">
-                <ul class="code">
+
+    <!-- 中部内容 -->
+    <section id="sk_lg_content">
+        <div id="lg_form">
+            <form action="" id="sk_lg_form">
+                <h3>
+                    <span class="current">扫码登录</span>
+                    <span>密码登录</span>
+                </h3>
+
+                <div id="lastname" class="hide"></div>
+
+                <div id="qrcode" class="tabLogin">
                     <img src="../img/login/qrcode.png" alt="">
-                    <p>打开 <a href="#">寺库app</a> 扫一扫登录</p>
-                </ul>
-            </div>
-            <div class="login_footer">
-                <p>使用合作网站账号登录</p>
-                <p>
-                    <span><a href="">QQ</a></span>
-                    <i><a href="">微信</a></i>
-                </p>
-            </div>
-            <div class="link">
-                <p>还不是寺库会员？<a href="./register.html">免费注册</a> <span><a href="#">忘记密码?</a></span></p>
-            </div>
+                </div>
+
+                <div id="id" class="tabLogin hide">
+                    <p>
+                        <label for="">
+                            <input type="text" name="uName" placeholder="用户名/手机号/邮箱">
+                            <span class=""><img src="../img/login/name_icon.png" alt=""></span>
+                        </label>
+                    </p>
+                    <p>
+                        <label for="">
+                            <input type="text" name="uPwd" placeholder="密码">
+                            <span class=""><img src="../img/login/pwd_icon.png" alt=""></span>
+                        </label>
+                    </p>
+
+                    <p id="code" class="show">
+                        <label>验&nbsp&nbsp证&nbsp&nbsp码:</label>
+                        <input type="text" class="verify" name="idCode" id="Txtidcode">
+                        <em id="idcode" class="show"></em>
+                    </p>
+
+                    <p><input type="checkbox" checked>记住账号</p>
+                    <p><button>立即登录</button></p>
+                </div>
+
+
+                <p id="textts">打开 <a href="#" class="current">寺库app</a> 扫一扫登录</p>
+
+
+                <div id="shortcut">
+                    <p>使用合作网站账号登录</p>
+                    <p><span>QQ</span><span>微信</span></p>
+                </div>
+                <p>还不是寺库会员? <a href="../html/register.html">免费注册</a> <a href="#" id="findPwd">忘记密码</a></p>
+            </form>
         </div>
     </section>
 
-    <!-- 尾部 -->
-    <footer class="sk_footer">
-        <div class="links">
+    <!-- 尾部样式 -->
+    <footer id="sk_lg_footer">
+        <div class="list">
             <ul>
-                <li><a href="">新手指南</a></li>
-                <li><a href="">付款方式</a></li>
-                <li><a href="">物流配送</a></li>
-                <li><a href="">售后服务</a></li>
+                <li>
+                    <a href="">新手指南</a>
+                    <a href="">付款方式</a>
+                    <a href="">物流配送</a>
+                    <a href="">售后服务</a>
+                </li>
+                <li>
+                    <a href="">寺库微博</a>
+                    <a href="">友情链接</a>
+                    <a href="">奢侈品热词</a>
+                </li>
+                <li>
+                    <a href="">加入寺库</a>
+                    <a href="">联系我们</a>
+                    <a href="">关于寺库</a>
+                    <a href="">帮助中心</a>
+                </li>
+                <li>
+                    <a href="">寺库奢侈品养护</a>
+                    <a href="">寺库招商</a>
+                    <a href="">寺库加盟店</a>
+                </li>
             </ul>
-            <ul>
-                <li><a href="">寺库微博</a></li>
-                <li><a href="">友情旌接</a></li>
-                <li><a href="">奢侈品热热词</a></li>
-            </ul>
-            <ul>
-                <li><a href="">加入寺库</a></li>
-                <li><a href="">联系我们</a></li>
-                <li><a href="">关于寺库</a></li>
-                <li><a href="">帮助中心</a></li>
-            </ul>
-            <ul>
-                <li><a href="">寺库奢侈品养护</a></li>
-                <li><a href="">寺库招商</a></li>
-                <li><a href="">寺库加盟店</a></li>
-            </ul>
-            <div class="info">
-                <p>
-                    <span>统一社会信用代码：91110102689248179K</span>
-                    <span><a href="">京公安备11010102001392</a></span>
-                    <span>京ICP证110119号</span>
-                    <span>京ICP备09084709号-3</span>
-                    <span>ISO9001中国质量管理体系认证</span>
-                </p>
-                <p>COPYRIGHT © 2010-2017 北京寺库商贸有限公司 版权所有</p>
-                <p class="link">
-                    <a href="http://www.hd315.gov.cn/"><img src="../img/register/f_0.jpg" alt=""></a>
-                    <a href="http://cxb.12312.gov.cn/tub/pages/main/FrontCorpInfoView,S53d884ea4a5643c9014bde5f5ec00023.html"><img
-                            src="../img/register/f_1.jpg" alt=""></a>
-                    <a href="//ss.knet.cn/verifyseal.dll?sn=e16051911010263532a4zi000000&amp;a=1&amp;pa=0.6321878711618679"><img
-                            src="../img/register/f_2.png" alt=""></a>
-                    <a href="http://search.szfw.org/cert/l/CX20141231006253006352"><img src="../img/register/f_3.jpg"
-                            alt=""></a>
-                    <a href="http://www.bj.cyberpolice.cn/index.do#" target="_blank"><img src="../img/register/f_4.jpg"
-                            alt=""></a>
-                </p>
-            </div>
         </div>
-
+        <div class="link">
+            <p>
+                <span>统一社会信用代码：91110102689248179K</span>
+                <span>
+                    <a href="">京公安备11010102001392</a>
+                </span>
+                <span>京ICP证110119号 京ICP备09084709号-3</span>
+                <span>ISO9001中国质量管理体系认证</span>
+            </p>
+            <p>COPYRIGHT © 2010-2017 北京寺库商贸有限公司 版权所有</p>
+            <p>
+                <a href=""><img src="../img/register/f_0.jpg" alt=""></a>
+                <a href=""><img src="../img/register/f_1.jpg" alt=""></a>
+                <a href=""><img src="../img/register/f_2.png" alt=""></a>
+                <a href=""><img src="../img/register/f_3.jpg" alt=""></a>
+                <a href=""><img src="../img/register/f_4.jpg" alt=""></a>
+            </p>
+        </div>
     </footer>
 
-    <!-- bootstrap依赖jquery-->
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="../lib/jquery/jquery.min.js"></script>
-    <!-- bootstrap js 核心文件-->
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../lib/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

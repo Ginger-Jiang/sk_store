@@ -1,183 +1,443 @@
-/* 头部样式 */
-.sk_topBar {
-    background-color: rgb(50, 49, 49);
-    font-size: 12px;
+html,
+body,
+ul,
+li,
+ol,
+dl,
+dd,
+dt,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+fieldset,
+legend,
+img,
+input,
+figure,
+figcaption {
+    margin: 0;
+    padding: 0;
 }
 
-.sk_topBar .row div {
-    height: 70px;
-    line-height: 70px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 16px;
+    font-weight: normal;
 }
 
-.sk_topBar .row div.links a {
-    color: rgb(153, 153, 153);
+ul,
+ol,
+li {
+    list-style: none;
+}
+
+b,
+strong {
+    font-weight: normal;
+}
+
+em,
+i {
+    font-style: normal;
+}
+
+a,
+u {
     text-decoration: none;
 }
 
-.sk_topBar .row div.links a+a {
-    display: inline-block;
-    margin-left: 30px;
+img {
+    border: 0;
+    display: block;
 }
 
-.sk_topBar .row div.links a:hover {
-    color: rgb(198, 156, 109);
+input {
+    outline: none;
 }
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: “Microsoft YaHei” ! important;
+    font-size: 12px;
+}
+
+.show {
+    display: inline-block !important;
+}
+
+.hide {
+    display: none !important;
+}
+
+.color {
+    color: red !important;
+}
+
+.bordercolor {
+    border: 1px solid red !important;
+}
+
+.current {
+    color: #f19108 !important;
+}
+
+.focus {
+    border: 1px solid rgb(255, 173, 119) !important;
+}
+
+/* 顶部通栏样式 */
+header {
+    width: 100%;
+    height: 70px;
+    padding: 0 45px;
+    box-sizing: border-box;
+    background-color: rgb(51, 50, 49);
+}
+
+header .logo {
+    width: 30px;
+    height: 70px;
+    float: left;
+}
+
+header .link {
+    height: 70px;
+    float: right;
+}
+
+header .link li {
+    float: left;
+    line-height: 70px;
+    padding: 0 10px;
+}
+
+header .link li:hover a {
+    color: rgb(198, 156, 109);
+    text-decoration: none;
+}
+
+header .link li a {
+    color: #999;
+    font-size: 12px;
+}
+
 
 /* 中部样式 */
-.sk_content {
+#sk_lg_content {
     height: 750px;
     width: 100%;
     padding: 30px 15px;
-    background-image: url(../img/register/login_03.jpg);
+    background-image: url(../img/register/bg.jpg);
     background-color: rgb(253, 248, 244);
     background-position: center;
 }
 
-.sk_content .login {
-    width: 390px;
-    height: 490px;
-    float: right;
+#sk_lg_content #lg_form {
+    width: 380px;
+    /* height: 100%; */
     background-color: #fff;
-    padding: 40px 40px;
-    font-size: 12px;
-    color: rgb(102, 102, 102);
-    margin: 90px 45px 0 0;
+    float: right;
+    margin: 80px 50px 0 0;
+    padding: 30px 35px;
+    box-sizing: border-box;
 }
 
-.sk_content .login .login_title p {
-    width: 150px;
+#sk_lg_content #lg_form h3 {
     height: 20px;
-    margin-bottom: 15px;
-    display: inline-block;
+    margin-bottom: 50px;
+}
+
+#sk_lg_content #lg_form h3 span {
+    float: left;
+    width: 50%;
     text-align: center;
-    font-size: 18px;
-}
-.sk_content .login .login_title .active{
-    color: rgb(199,110,31);
+    cursor: pointer;
+    font: normal 18px/20px microsoft yahei;
+    color: #666;
 }
 
-.sk_content .login .login_content ul {
+/* 错误信息样式 */
+#sk_lg_content #lg_form #lastname {
     width: 310px;
-    height: 247px;
-    position: relative;
-    overflow: hidden;
+    height: auto;
+    border: 1px solid #ffac76;
+    background: #ffffcf url(https://safeimg.secoo.com/imagesNew/loginPic/error_tips.png) no-repeat left center;
+    padding-left: 30px;
+    margin-bottom: 12px;
+    line-height: 25px;
+    color: #ff0200;
 }
 
-.sk_content .login .login_content ul img {
-    width: 192px;
+
+
+/* 验证码登录模块 */
+#sk_lg_content #lg_form #qrcode {
+    width: 100%;
     height: 192px;
-    display: block;
-    position: absolute;
-    left: 50%;
-    margin-left: -96px;
-    top: 30px;
+    position: relative;
 }
 
-.sk_content .login .login_content ul p {
+#sk_lg_content #lg_form #qrcode img {
+    width: 192px;
     position: absolute;
-    top: 230px;
-    ;
-    left: 50%;
-    margin-left: -80px;
+    left: 59px;
+    top: 0;
+}
+
+/* 账号密码登录模块 */
+#sk_lg_content #lg_form #id {
+    display: none;
+    width: 310px;
+    height: 100%;
+}
+
+#sk_lg_content #lg_form #id p [type=text] {
+    width: 298px;
+    height: 50px;
+    line-height: 20px;
+    padding: 14px 5px;
+    border: 1px solid #dedede;
     font-size: 14px;
-    font-weight: bolder;
+    font-weight: bold;
+    font-family: 'microsoft yahei';
+    border-radius: 0;
+    position: relative;
+    margin-bottom: 15px;
 }
-.sk_content .login .login_content ul p a{
-    color: rgb(199,110,31);
-    text-decoration: underline ;
+
+#sk_lg_content #lg_form #id p [type=text]::-webkit-input-placeholder {
+    color: #999;
+    font-size: 12px;
+    font-weight: 500;
 }
-.sk_content .login .login_footer{
-    clear: both;
+
+#sk_lg_content #lg_form #id p span {
+    display: block;
+}
+
+#sk_lg_content #lg_form #id [type=checkbox] {
+    margin-bottom: 30px;
+}
+
+#sk_lg_content #lg_form #id button {
+    width: 100%;
+    background-color: #f19108;
+    border: 0;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+}
+#sk_lg_content #lg_form #id p{
+    position: relative;
+}
+#sk_lg_content #lg_form #id p span img {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 30px;
+    top: 16px;
+}
+
+
+/* 验证码输入模块 */
+#sk_lg_content #lg_form #id #code label {
+    height: 20px;
+    color: #666;
+    display: block;
+}
+
+#sk_lg_content #lg_form #id #code [type=text] {
+    display: inline-block;
+    margin-top: 5px;
+    border: 1px solid rgb(222, 222, 222);
+    width: 120px;
+    height: 20px;
+    line-height: 20px;
+    padding: 14px 5px;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'microsoft yahei';
+    border-radius: 0;
+}
+#sk_lg_content #id .code input {
+    width: 130px;
+}
+
+#sk_lg_content #id #code #idcode {
+    line-height: 23px;
+    height: 40px;
+    width: 105px;
+    height: 25px;
+    display: inline-block !important;
+    text-align: center;
+    margin-left: 10px;
+    font-size: 24px;
+}
+
+/* app登录 */
+#sk_lg_content #lg_form p#textts {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    text-align: center;
+    margin: 35px 0;
+}
+
+/* 合作网站登录 */
+#sk_lg_content #lg_form #shortcut {
+    width: 310px;
+    height: 90px;
+    padding-bottom: 30px;
     margin-top: 35px;
 }
-.sk_content .login .login_footer p{
-    margin-bottom: 15px;
+
+#sk_lg_content #lg_form #shortcut p {
+    height: 30px;
+    width: 310px;
+    padding: 5px 0;
+
 }
-.sk_content .login .login_footer p a{
-    color: #000;
-    text-decoration: none;
-    font-size: 14px;
+
+#sk_lg_content #lg_form #shortcut p:nth-of-type(1) {
+    color: #999;
 }
-.sk_content .login .login_footer p span{
-    background: url(../img/login/qq.jpg) no-repeat;
+
+#sk_lg_content #lg_form #shortcut p span {
+    display: inline-block;
+    width: 60px;
+    height: 25px;
+    cursor: pointer;
+    padding-right: 10px;
+}
+
+#sk_lg_content #lg_form #shortcut p span:nth-of-type(1) {
+    background: url("../img/login/qq.jpg") no-repeat;
     padding-left: 20px;
-    margin-right: 35px;
 }
-.sk_content .login .login_footer p i{
-    background: url(../img/login/WeChat.png) no-repeat;
+
+#sk_lg_content #lg_form #shortcut p span:nth-of-type(2) {
+    background: url("../img/login/WeChat.png") no-repeat;
     background-size: 15px;
     padding-left: 20px;
 }
-.sk_content .login .link{
-    margin-top: 30px;
+
+/* 注册入口 */
+#sk_lg_content #sk_lg_form p:last-child {
+    width: 310px;
+    height: 15px;
+    color: #999;
 }
-.sk_content .login .link a{
-    color: rgb(199,110,31);
-    text-decoration: none;
+
+#sk_lg_content #sk_lg_form p:last-child a {
+
+    color: #f19108;
 }
-.sk_content .login .link span a{
-    color: #000;
+
+#sk_lg_content #sk_lg_form p:last-child a:last-child {
     float: right;
+    color: #666;
 }
+
+
+
+
+
+
+
+
 
 
 
 /* 尾部样式 */
-.sk_footer {
+footer {
     width: 100%;
     height: 455px;
-    background-color: rgb(246, 246, 246);
+    padding: 100px 0 0 0px;
+    background-color: #f6f6f6;
+
 }
 
-.sk_footer .links {
-    width: 1200px;
-    height: 100%;
-    padding: 55px 0 55px 40px;
+footer .list {
+    height: 150px;
+}
+
+footer .list ul {
+    margin-left: 50px;
+}
+
+footer .list li {
+    width: 236px;
+    float: left;
+}
+
+footer .list li a {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-decoration: none;
+    color: #000;
+}
+
+footer .list li a:hover {
+    color: #f19108;
+}
+
+footer .link {
+    clear: both;
     font-size: 14px;
 }
 
-.sk_footer .links ul {
-    float: left;
-    margin-right: 180px;
+footer .link p:nth-of-type(1) {
+    margin-left: 50px;
 }
 
-.sk_footer .links ul li {
-    margin-bottom: 25px;
+footer .link p:nth-of-type(1) span {
+    margin-right: 28px;
+
 }
 
-.sk_footer .links ul li a {
-    color: #000;
-}
-
-.sk_footer .links ul li a:hover {
-    text-decoration: none;
-    color: rgb(241, 145, 8);
-}
-
-.sk_footer .links .info p {
-    clear: both;
-    margin-top: 20px;
-}
-
-.sk_footer .links .info p span {
-    margin-right: 35px;
-}
-
-.sk_footer .links .info p span:nth-of-type(2) {
-    background: url(../img/pcfooterbatb.png) no-repeat;
+footer .link p:nth-of-type(1) span:nth-of-type(2) a {
+    background: url("../img/register/pcfooterbatb.png")no-repeat;
     padding-left: 20px;
 }
 
-.sk_footer .links .info p a {
+footer .link p:nth-of-type(1) a {
     color: #000;
     text-decoration: none;
 }
 
-.sk_footer .links .info p a:hover {
-    color: rgb(241, 145, 8);
+footer .link p:nth-of-type(1) a:hover {
+    color: #f19108;
 }
 
-.sk_footer .links .info .link a {
-    display: inline-block;
+footer .link p:nth-of-type(2) {
+    line-height: 25px;
+    font-size: 14px;
+    margin: 20px 0 20px 50px;
+}
+
+footer .link p:nth-of-type(3) {
+    margin-left: 50px;
+}
+
+footer .link p:nth-of-type(3) a {
+    float: left;
     margin-right: 20px;
 }
