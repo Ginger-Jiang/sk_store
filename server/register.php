@@ -29,9 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $UNAME = $_POST["uName"];
 
         $UPWD = $_POST["uPwd"];
-
-        print_r( $UNAME, $UPWD);
-
         $stmt = $conn->prepare($insetSql);
         $stmt->bind_param("ss", $UNAME, $UPWD);
         $stmt->execute();

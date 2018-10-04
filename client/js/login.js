@@ -89,6 +89,7 @@ define("login", ["jquery", "md5", "idcode"], function () {
                     },
                     success: function (res) {
                         if (res.status == 200) {
+                            console.log(res)
                             window.location="../index.html"
                         } else {
                             $("#lastname").html("用户名或密码错误");

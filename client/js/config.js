@@ -2,7 +2,7 @@
 define("config", [], function () {
     require.config({
         urlArgs: "V1.0.1",
-        baseUrl: "./../js/",
+        baseUrl: "/1000phone/sk/project/client/js/",///project/client/js/
         waitSeconds: 0,
         paths: {
             //插件
@@ -14,8 +14,11 @@ define("config", [], function () {
             'bootstrap': ["lib/bootstrap/js/bootstrap"],
 
             //功能
-            "register": ["register"], //-->注册模块
-            "login":["login"], //-->登录模块
+            "index":["./index"], //-->首页
+            "register": ["./register"], //-->注册模块
+            "login": ["./login"], //-->登录模块
+            "islogin": ["./islogin"],//-->判断是否登录模块
+            "goods":["./goods"],//商品详情页 动态加载商品信息
 
         },
         shim: {

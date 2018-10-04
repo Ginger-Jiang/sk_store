@@ -21,5 +21,3 @@ $connPort = "3306";
 
 $conn = new mysqli($dbHost,$connName,$connPwd,$dataBase,$connPort);
 mysqli_query($conn,"set names utf8");
-
-print_r(false);
