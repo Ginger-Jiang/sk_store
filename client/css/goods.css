@@ -451,7 +451,7 @@ nav .search>p>a {
     width: 450px;
     padding: 15px 0 10px 20px;
 }
-#gs_content > div.contents > div.infog_r > div.buy>a{
+#gs_content > div.contents > div.infog_r > div.buy>button{
     display: block;
     width: 160px;
     height: 45px;
@@ -460,6 +460,7 @@ nav .search>p>a {
     background-color: red;
     color: #fff;
     background-position: right -597px;
+    border: none;
 }
 
 

@@ -18,7 +18,8 @@ define("config", [], function () {
             "register": ["./register"], //-->注册模块
             "login": ["./login"], //-->登录模块
             "islogin": ["./islogin"],//-->判断是否登录模块
-            "goods":["./goods"],//商品详情页 动态加载商品信息
+            "goods": ["./goods"],//商品详情页 动态加载商品信息
+            "query_product":["./query_product"], //根据产品id查询数据库返回商品信息
 
         },
         shim: {

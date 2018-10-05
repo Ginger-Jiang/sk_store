@@ -11,6 +11,7 @@ define("index", ["jquery", "islogin"], function ($, log) {
             if (res.status == 200) {
                 $("#sk_hd > div.login > div.top > ul > li:nth-child(1) > a:nth-child(1)").html(res.data.u_name);
                 $("#sk_hd > div.login > div.top > ul > li:nth-child(1) > a:nth-child(2)").remove();
+                sessionStorage.setItem("userinfo", JSON.stringify(res));
             }
         });
     };
