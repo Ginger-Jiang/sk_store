@@ -30,7 +30,12 @@ require(["config"], function () {
                         obj.goods();
                     });
                     break;
-
+                case "cart.html":
+                    //商品详情页
+                    require(["cart"], function (obj) {
+                        obj.cart();
+                    });
+                    break;
             }
         } else {
             console.log("403-->模块加载失败")

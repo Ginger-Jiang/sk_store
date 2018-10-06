@@ -1,0 +1,380 @@
+html,
+body,
+ul,
+li,
+ol,
+dl,
+dd,
+dt,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+fieldset,
+legend,
+img,
+input,
+figure,
+figcaption {
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+ul,
+ol,
+li {
+    list-style: none;
+}
+
+b,
+strong {
+    font-weight: normal;
+}
+
+em,
+i {
+    font-style: normal;
+}
+
+a,
+u {
+    text-decoration: none;
+    color: #000;
+}
+
+img {
+    border: 0;
+    display: block;
+}
+
+input {
+    outline: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    font-family: “Microsoft YaHei” ! important;
+    font-size: 12px;
+}
+
+/* 特殊样式 */
+.show {
+    display: inline-block !important;
+}
+
+.hide {
+    display: none !important;
+}
+
+a:hover {
+    color: #f19108;
+}
+
+/* 顶部通栏 */
+header {
+    width: 100%;
+    height: 70px;
+    background-color: #323232;
+}
+
+header .container {
+    width: 990px;
+    height: 70px;
+    margin: 0 auto;
+}
+
+header .container .l {
+    float: left;
+}
+
+header .container .l img {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+
+header .container .r {
+    float: right;
+}
+
+header .container .r img {
+    width: 100%;
+    height: 100%;
+}
+
+/* 内容区 */
+#sk_cart_content {
+    width: 100%;
+    min-height: 350px;
+    height: 100%;
+}
+
+/* 购物车无商品 */
+#sk_cart_content .inner {
+    width: 990px;
+    height: 290px;
+    margin: 0 auto;
+    background: url('../img/cart/cart.jpg')no-repeat 150px 50px;
+}
+
+#sk_cart_content .inner>.nulltxt {
+    padding: 70px 0 0 410px;
+}
+
+#sk_cart_content .inner>.nulltxt>p:first-child {
+    font-size: 24px;
+    font-family: microsoft yahei;
+    color: #5d5d5d;
+    padding-bottom: 22px;
+}
+
+#sk_cart_content .inner>.nulltxt>p:last-child {
+    padding-left: 60px;
+}
+
+#sk_cart_content .inner>.nulltxt>p:last-child>a {
+    padding: 10px 40px;
+    background-color: #e93b39;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: microsoft yahei;
+}
+
+/* 购物车有商品 */
+#sk_cart_content .cart {
+    width: 990px;
+    height: 290px;
+    padding-top: 50px;
+    margin: 0 auto;
+}
+
+#sk_cart_content .cart>.product_list {
+    width: 986px;
+    border: 1px solid #f1f1f1;
+    padding: 1px;
+    background: #fff;
+    position: relative;
+    z-index: 1;
+}
+
+#sk_cart_content .cart>.product_list>table {
+    width: 100%;
+    color: #666;
+}
+
+#sk_cart_content .cart>.product_list>table>thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+#sk_cart_content .cart>.product_list>table>thead>tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+#sk_cart_content .cart>.product_list>table>thead>tr>th {
+    height: 38px;
+    font-weight: normal;
+    color: #999;
+    border-bottom: 1px solid #fff;
+    background-color: rgb(236, 236, 236);
+}
+
+#sk_cart_content .cart>.product_list>table>tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+#sk_cart_content .cart>.product_list>table>tbody>tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+#sk_cart_content .cart>.product_list>table>tbody>tr>td {
+    padding: 20px 0 15px;
+    background: #fdf0ef;
+    text-align: center;
+}
+
+#sk_cart_content>div.cart>div.product_list>table>tbody>tr>td.p_num>input[type="button"] {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+}
+
+#sk_cart_content>div.cart>div.product_list>table>tbody>tr>td.p_num>input.num {
+    width: 30px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+}
+
+#sk_cart_content .cart>.cartprice {
+    height: 190px;
+    padding: 15px 45px 25px 30px;
+    margin-top: 6px;
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #f1f1f1;
+}
+
+#sk_cart_content .cart>.cartprice>p {
+    width: 100%;
+    height: 30px;
+    line-height: 45px;
+}
+
+#sk_cart_content .cart>.cartprice>p+p {
+    text-align: right;
+}
+
+#sk_cart_content>div.cart>div.cartprice>p:nth-child(2) {
+    font-size: 14px;
+    color: #000;
+}
+
+#sk_cart_content>div.cart>div.cartprice>p:nth-child(2) span {
+    font-size: 24px;
+    color: red;
+    font-weight: bolder;
+}
+
+#sk_cart_content .cart>.cartprice>p:last-child>a {
+    display: block;
+    width: 150px;
+    float: right;
+    padding: 10px 40px;
+    background-color: #e93b39;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    font-family: microsoft yahei;
+    margin-top: 20px;
+}
+
+
+/* 页尾 */
+footer {
+    width: 100%;
+    background-color: #f6f6f6;
+    border-top: 1px solid #fff;
+    margin-top: 200px;
+}
+
+footer .f_top {
+    width: 1200px;
+    margin: 0 auto;
+    height: 155px;
+}
+
+footer .f_top>div {
+    float: left;
+    width: 33%;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+footer .f_top>.top1>ul>li {
+    float: left;
+    margin-right: 10px;
+}
+
+footer>div.f_top>div.top1>ul>li>a span {
+    display: block;
+    margin-top: 10px;
+    width: 60px;
+    text-align: center;
+}
+
+footer>div.f_top>div.top1>ul>li>a>p {
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    position: relative;
+}
+
+footer>div.f_top>div.top1>ul>li:nth-child(1)>a>p>img {
+    position: absolute;
+    left: 0px;
+}
+
+footer>div.f_top>div.top1>ul>li:nth-child(2)>a>p>img {
+    position: absolute;
+    left: -180px;
+}
+
+footer>div.f_top>div.top1>ul>li:nth-child(3)>a>p>img {
+    position: absolute;
+    left: -270px;
+}
+
+footer>div.f_top>div.top1>ul>li:nth-child(4)>a>p>img {
+    position: absolute;
+    left: -355px;
+}
+
+#sk_cart_footer>div.f_top>div.top2 {
+    width: 330px;
+    height: 155px;
+    margin-left: 100px;
+}
+
+#sk_cart_footer>div.f_top>div.top2>a {
+    display: inline-block;
+    float: left;
+    width: 105px;
+    height: 105px;
+    margin-right: 10px;
+}
+
+#sk_cart_footer>div.f_top>div.top2>a>img {
+    width: 100%;
+    height: 100%;
+}
+
+#sk_cart_footer>div.f_top>div.top3 {
+    width: 250px;
+    height: 155px;
+    margin-left: 100px;
+    text-align: right;
+}
+
+#sk_cart_footer>div.f_top>div.top3>a {
+    width: 40%;
+    display: block;
+    float: left;
+}
+
+#sk_cart_footer>div.f_bottom {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    color: #999;
+    text-align: center;
+    background-color: rgb(234, 234, 234);
+}
