@@ -19,7 +19,7 @@ define("cart", ["jquery", "query_product", "cookie"], function ($, qp, cok) {
         self = this;
     }
     //页面数据加载模块
-    //判断是否登录
+    //核心功能-->根据状态与cookie、数据库对页面数据进行渲染
     Cart.prototype.cart = function () {
         //读取cookie
         let c_cok = JSON.parse($.cookie("cart") || "[]");
@@ -59,14 +59,15 @@ define("cart", ["jquery", "query_product", "cookie"], function ($, qp, cok) {
                 //读取sessionStorage->获取u_ip  (JSON.parse(status)).data.u_id
                 let userinfo = sessionStorage.getItem("userinfo")
                 // 遍历cookie 获取信息
-                c_cok.forEach((ele, index) => {
+                let new_c_cok = JSON.parse($.cookie("cart") || "[]");
+                new_c_cok.forEach((ele, index) => {
                     $.ajax({
-                        url: "http://127.0.0.1/1000phone/sk/project/server/addCart.php",
+                        url: "http://127.0.0.1/1000phone/sk/project/server/updateCart.php",
                         type: "post",
                         data: {
-                            p_id: ele.p_id,
-                            u_id: (status).data.u_id,
-                            p_num: ele.num,
+                            p_id: ele.p_id, //cpid
+                            u_id: (status).data.u_id, //用户id
+                            p_num: ele.num, //产品数量
                         }
                     }).then(function (res) {
                         if (res.status == 200) {
@@ -97,83 +98,8 @@ define("cart", ["jquery", "query_product", "cookie"], function ($, qp, cok) {
         }
     };
 
-    //核心功能-->根据状态与cookie、数据库对页面数据进行渲染
-    // (function () {
-    //     //读取cookie
-    //     let c_cok = JSON.parse($.cookie("cart") || "[]");
-    //     // let status = JSON.parse(sessionStorage.getItem("userinfo")); //获取sessionStorage信息 -->用户信息
-    //     //判断是否登录
-    //     if (status != null) {
-    //         //登录了--cookie中有数据和没有数据  数据库中有数据和没数据
-    //         if (c_cok.length == 0) {
-    //             //登录了 cookie没数据-->加载数据库数据
-    //             $.ajax({
-    //                 type: "post",
-    //                 url: "http://127.0.0.1/1000phone/sk/project/server/query_cart.php",
-    //                 data: {
-    //                     u_id: status.data.u_id,
-    //                 },
-    //                 dataType: "json",
-    //                 success: function (res) {
-    //                     if (res != []) { //如果登录了 数据库中有数据
-    //                         $("#sk_cart_content > div.inner").addClass("hide")
-    //                         $("#sk_cart_content > div.inner").removeClass("show")
-    //                         $("#sk_cart_content > div.cart").addClass("show");
-    //                         $("#sk_cart_content > div.cart").removeClass("hide");
-    //                         res.forEach((ele, index) => {
-    //                             // console.log(ele)
-    //                             loading(ele.p_id, ele.p_num)
-    //                         });
-    //                     } else { //如果登录了,数据库中没数据
-    //                         $("#sk_cart_content > div.inner").addClass("show")
-    //                         $("#sk_cart_content > div.inner").removeClass("hide")
 
-    //                         $("#sk_cart_content > div.cart").addClass("hide");
-    //                     }
-    //                 }
-    //             })
-    //         } else {
-    //             //登录了  cookie中有数据-->同步到数据中 然后进行显示
-    //             //读取sessionStorage->获取u_ip  (JSON.parse(status)).data.u_id
-    //             let userinfo = sessionStorage.getItem("userinfo")
-    //             // 遍历cookie 获取信息
-    //             c_cok.forEach((ele, index) => {
-    //                 $.ajax({
-    //                     url: "http://127.0.0.1/1000phone/sk/project/server/addCart.php",
-    //                     type: "post",
-    //                     data: {
-    //                         p_id: ele.p_id,
-    //                         u_id: (status).data.u_id,
-    //                         p_num: ele.num,
-    //                     }
-    //                 }).then(function (res) {
-    //                     if (res.status == 200) {
-    //                         // 同步到数据库成功-->删除cookie
-    //                         $.cookie("cart", null, {
-    //                             expires: -1
-    //                         })
-    //                         // 并且刷新页面
-    //                         window.location.reload()
-    //                     }
-    //                 })
-    //             });
-    //         }
-    //     } else {
-    //         //没登录--cookie中有数据和没有数据
-    //         if (c_cok.length == 0) {
-    //             //cookie没有数据-->显示空空如也
-    //             $("#sk_cart_content > div.inner").addClass("show")
-    //             $("#sk_cart_content > div.inner").removeClass("hide")
 
-    //             $("#sk_cart_content > div.cart").addClass("hide");
-    //         } else {
-    //             //cookie有数据-->遍历取出
-    //             c_cok.forEach((ele, index) => {
-    //                 loading(ele.p_id, ele.num);
-    //             });
-    //         }
-    //     }
-    // })();
 
     // 点击结算判断是否登录
     (function () {
@@ -199,7 +125,7 @@ define("cart", ["jquery", "query_product", "cookie"], function ($, qp, cok) {
                 <td width="97">
                     <img width=90 src="${res[0].p_imgs}" alt="">
                 </td>
-                <td class="p_name">${res[0].p_name}</td>
+                <td class="p_name" data-info="${p_id}">${res[0].p_name}</td>
                 <td class="p_price">${res[0].p_price}</td>
                 <td class="p_num"><input type=button class="sub" value=-><input type=text class=num value=${num}><input type=button class="add" value=+></td>
                 <td class="price">${num*res[0].p_price}</td>
@@ -257,33 +183,58 @@ define("cart", ["jquery", "query_product", "cookie"], function ($, qp, cok) {
 
     //点击加减改变数量与金额
     (function () {
-        $("#sk_cart_content > div.cart > div.product_list > table > tbody > tr > td.p_num > input[type=button]:nth-child(1)").click(function () {
-            console.log(111)
-        })
         $("tbody").on("click", $("tbody [type=button]"), function (e) {
-            let num = $("tbody input.num").val();
             if ($(e.target).attr("class") == "sub") {
+                let subnum = $(e.target).siblings(".num").val()
                 $(e.target).parents("tr").find("[type=checkbox]").prop("checked", true)
-                if (num >= 1) {
-                    num -= 1
+                if (subnum >= 1) {
+                    subnum -= 1
                 } else {
-                    num = 0
+                    subnum = 0
                 }
-                if (num == 0) {
+                if (subnum == 0) {
                     $(e.target).parents("tr").find("[type=checkbox]").prop("checked", false)
                 }
-                $("tbody input.num").val(num);
-                $("tbody td.price").html(num * $("tbody td.p_price").html());
+                $(e.target).siblings(".num").val(subnum); //计算数量
+
+                $(e.target).parents("tr").find(".price").html(subnum * $(e.target).parents("tr").find(".p_price").html()); //计算总金额
+
                 $("#cartprice").html(money());
+
+                //保存到cookie -->subnum数量  id
+                let sub_p_id = $(e.target).parents("tr").find(".p_name").data().info;
+                updatacookie(sub_p_id, subnum)
             } else if ($(e.target).attr("class") == "add") {
-                $(e.target).parents("tr").find("[type=checkbox]").prop("checked", true)
-                num++
-                $("tbody input.num").val(num);
-                $("tbody td.price").html(num * $("tbody td.p_price").html());
+                let addnum = $(e.target).siblings(".num").val()
+                $(e.target).parents("tr").find("[type=checkbox]").prop("checked", true); //勾选全选
+
+                addnum++
+
+                $(e.target).siblings(".num").val(addnum); //计算数量
+
+                $(e.target).parents("tr").find(".price").html(addnum * $(e.target).parents("tr").find(".p_price").html()); //计算总金额
+
                 $("#cartprice").html(money());
+
+                //保存到cookie -->addnum  id
+                let add_p_id = $(e.target).parents("tr").find(".p_name").data().info;
+                updatacookie(add_p_id, addnum)
             }
         })
     })();
+
+    //更新cookie
+    function updatacookie(id, num) {
+        let cok = JSON.parse($.cookie("cart") || []);
+        if (cok.length > 0) {
+            cok.forEach((ele, index) => {
+                if (ele.p_id == id) {
+                    ele.num = num;
+                    $.cookie("cart", JSON.stringify(cok));
+                }
+            });
+        }
+    }
 
     //计算金额-->功能函数
     function money() {
