@@ -9,7 +9,7 @@ define("islogin", ["jquery"], function ($) {
                 async: true,
                 dataType:"json",
                 type:"post",
-                url: "http://127.0.0.1/1000phone/sk/project/server/islogin.php",
+                url: "../../server/islogin.php",
                 success: function (res) {
                     fn(res);
                 }

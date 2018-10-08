@@ -419,24 +419,21 @@ nav .search>p>a {
 
 /* 放大镜区域 */
 #gs_content .contents .showphoto{
-    width: 100px;
-    height: 100px;
+    width: 400px;
+    height: 400px;
     border: 2px solid #ccc;
     position: absolute;
     display: none;
     overflow: hidden;
     /* position: relative; */
     left: 520px;
+    z-index: 9;
+    background-color: #fff;
 }
 #gs_content>div.contents div.showphoto img{
     width: 800px;
     height: 800px;
     position: absolute;
-    /* float: right;
-    width: 530px;
-    min-height: 400px;
-    overflow: hidden; */
-    border: 10px solid red;
 }
 
 
@@ -508,8 +505,9 @@ nav .search>p>a {
     line-height: 45px;
     position: absolute;
     top: 0;
-    font-size: 16px;
+    font-size: 24px;
     opacity: 1;
+    color: red;
 }
 
 

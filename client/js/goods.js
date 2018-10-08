@@ -26,41 +26,23 @@ define("goods", ["jquery", "query_product", "cookie"], function ($, qp) {
 
     //判断是否登录
     (function () {
-        // $.ajax({
-        //     type: "post",
-        //     url: "http://127.0.0.1/1000phone/sk/project/server/islogin.php",
-        // }).then(function (res) {
         //     //登录了-->更改上面显示信息
         if (status != null) {
             //更改状态 并改变最上方显示用户名
             $("#gs_hd > div.login > div.top > ul > li:nth-child(1) > a:nth-child(1)").html((JSON.parse(status)).data.u_name);
             $("#gs_hd > div.login > div.top > ul > li:nth-child(1) > a:nth-child(2)").remove();
         }
-        // })
     })();
 
 
     // 动态加载页面数据
     function loading() {
-        // $.ajax({  //请求数据库数据对页面进行渲染
-        //     url: "http://127.0.0.1/1000phone/sk/project/server/p_query.php",
-        //     data: {
-        //         u_p_id: u_p_id,
-        //     }
-        // }).then(function (res) {
         qp.query_p(u_p_id, function (res) {
             $("#gs_content > div.contents > div.info_l > img").attr("src", res[0].p_imgs);
+            $("#gs_content > div.contents > div.showphoto > img").attr("src", res[0].p_imgs);
             $("#gs_content > div.contents > div.infog_r > div.name > h2").html(res[0].p_name);
             $("#gs_content > div.contents > div.infog_r > div.price > h2").html(`一口价:${res[0].p_price}`);
         })
-        // u_p_id: 2
-        // p_imgs: "../img/goods/cs_02.jpg"
-        // p_name: "DK UGG/DK UGG平跟鞋 Rosalind 丝光牛反皮 尖头珍珠跟单鞋"
-        // p_price: "469"
-        // $("#gs_content > div.contents > div.info_l > img").attr("src", res[0].p_imgs);
-        // $("#gs_content > div.contents > div.infog_r > div.name > h2").html(res[0].p_name);
-        // $("#gs_content > div.contents > div.infog_r > div.price > h2").html(`一口价:${res[0].p_price}`);
-        // })
     };
 
 
@@ -75,10 +57,10 @@ define("goods", ["jquery", "query_product", "cookie"], function ($, qp) {
                 $("#gs_content > div.contents > div.infog_r > div.buy > div").animate({
                     top: -50,
                     opacity: 0,
-                }, 800,function () {
+                }, 800, function () {
                     $("#gs_content > div.contents > div.infog_r > div.buy > div").css({
                         top: 0,
-                        opacity:1,
+                        opacity: 1,
                     })
                 })
 
@@ -105,19 +87,18 @@ define("goods", ["jquery", "query_product", "cookie"], function ($, qp) {
                 });
             })
         } else {
-
-            //加入购物车效果
-            $("#gs_content > div.contents > div.infog_r > div.buy > div").animate({
-                top: -50,
-                opacity: 0,
-            }, 800, function () {
-                $("#gs_content > div.contents > div.infog_r > div.buy > div").css({
-                    top: 0,
-                    opacity:1,
-                })
-            })
             //登录了  保存至数据库
             $("#joinCart").on("click", function () {
+                //加入购物车效果
+                $("#gs_content > div.contents > div.infog_r > div.buy > div").animate({
+                    top: -50,
+                    opacity: 0,
+                }, 800, function () {
+                    $("#gs_content > div.contents > div.infog_r > div.buy > div").css({
+                        top: 0,
+                        opacity: 1,
+                    })
+                })
                 // console.log(sessionStorage.getItem("userinfo"))
                 // {"status":200,"msg":"欢迎您","data":{"u_id":"57","u_name":"346600397@qq.com","u_pwd":"4297f44b13955235245b2497399d7a93","u_tel":null,"u_email":null,"u_headpic":null}}
                 let info = {
@@ -127,7 +108,8 @@ define("goods", ["jquery", "query_product", "cookie"], function ($, qp) {
                 };
                 $.ajax({
                     type: "post",
-                    url: "http://127.0.0.1/1000phone/sk/project/server/addCart.php",
+                    url: "../../server/addCart.php",
+                    // url: "http://127.0.0.1/1000phone/sk/project/server/addCart.php",
                     data: info,
                     dataType: "JSON",
                     success: function (res) {

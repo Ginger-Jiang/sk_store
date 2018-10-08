@@ -82,7 +82,8 @@ define("login", ["jquery", "md5", "idcode"], function () {
             if (validate() == true) {
                 $.ajax({
                     type: "post",
-                    url: "http://127.0.0.1/1000phone/sk/project/server/login.php",
+                    url: "../../server/login.php",
+                    // url: "http://127.0.0.1/1000phone/sk/project/server/login.php",
                     data: {
                         uName: $(this)[0].uName.value,
                         uPwd: pwd,

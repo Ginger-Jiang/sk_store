@@ -4,7 +4,8 @@ define("query_product", ["jquery",], function () {
     return {
         "query_p": function (p_id,fn) {
             $.ajax({  //请求数据库数据对页面进行渲染
-                url: "http://127.0.0.1/1000phone/sk/project/server/p_query.php",
+                url: "../../server/p_query.php",
+                // url: "http://127.0.0.1/1000phone/sk/project/server/p_query.php",
                 data: {
                     p_id: p_id,
                 }

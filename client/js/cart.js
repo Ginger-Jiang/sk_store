@@ -31,7 +31,8 @@ define("cart", ["jquery", "query_product", "cookie"], function ($, qp, cok) {
                 //登录了 cookie没数据-->加载数据库数据
                 $.ajax({
                     type: "post",
-                    url: "http://127.0.0.1/1000phone/sk/project/server/query_cart.php",
+                    url: "../../server/query_cart.php",
+                    // http://127.0.0.1/1000phone/sk/project/server/query_cart.php
                     data: {
                         u_id: status.data.u_id,
                     },
@@ -62,7 +63,8 @@ define("cart", ["jquery", "query_product", "cookie"], function ($, qp, cok) {
                 let new_c_cok = JSON.parse($.cookie("cart") || "[]");
                 new_c_cok.forEach((ele, index) => {
                     $.ajax({
-                        url: "http://127.0.0.1/1000phone/sk/project/server/updateCart.php",
+                        url: "../../server/updateCart.php",
+                        // http://127.0.0.1/1000phone/sk/project/server/updateCart.php
                         type: "post",
                         data: {
                             p_id: ele.p_id, //cpid
@@ -99,8 +101,6 @@ define("cart", ["jquery", "query_product", "cookie"], function ($, qp, cok) {
     };
 
 
-
-
     // 点击结算判断是否登录
     (function () {
         $("#sk_cart_content > div.cart > div.cartprice > p > #ljjs").on("click", function () {
@@ -134,7 +134,7 @@ define("cart", ["jquery", "query_product", "cookie"], function ($, qp, cok) {
             `
             $('#sk_cart_content > div.cart > div.product_list > table > tbody').append(product_content);
             del()
-            count()
+            // count()
         })
     }
 
@@ -164,6 +164,31 @@ define("cart", ["jquery", "query_product", "cookie"], function ($, qp, cok) {
             let p_checked = $("#sk_cart_content > div.cart > div.product_list > table > tbody > tr [type=checkbox]"); //所有商品的input
             jQuery.each(p_checked, function (index, val) { //jq遍历对象
                 if ($(val).prop("checked")) {
+                    // 判断是否登录-- > 登录了 删除数据库中数据-- > 没登录 删除cookie中数据
+                    if (status == null) { //没登录
+                        let cart_cok = JSON.parse($.cookie("cart"));
+                        cart_cok.forEach((ele, index) => {
+                            if (ele.p_id == $(val).parent("td").parents("tr").find(".p_name").data().info) {
+                                cart_cok.splice(index, 1)
+                            }
+                        });
+                        $.cookie("cart", JSON.stringify(cart_cok));
+                    } else { //登录了-->删除数据库中数据
+                        $.ajax({
+                            type: "post",
+                            url: "../../server/rm_product.php",
+                            // url: "http://127.0.0.1/1000phone/sk/project/server/rm_product.php",
+                            data: {
+                                u_id: status.data.u_id,
+                                p_id: $(val).parent("td").parents("tr").find(".p_name").data().info,
+                            },
+                            dataType: "json",
+                            success: function (res) {
+                                console.log(res);
+
+                            }
+                        });
+                    }
                     $(this).parents("tr").remove(); //-->页面删除
                     $("thead [type=checkbox]").prop("checked", false);
                     $("#cartprice").html(money())
@@ -185,11 +210,12 @@ define("cart", ["jquery", "query_product", "cookie"], function ($, qp, cok) {
     })();
 
     //点击加减改变数量与金额
-    function count() {
+    (function count() {
         $("tbody").on("click", $("tbody [type=button]"), function (e) {
             if ($(e.target).attr("class") == "sub") {
                 let subnum = $(e.target).siblings(".num").val()
                 $(e.target).parents("tr").find("[type=checkbox]").prop("checked", true)
+
                 if (subnum >= 1) {
                     subnum -= 1
                 } else {
@@ -204,13 +230,14 @@ define("cart", ["jquery", "query_product", "cookie"], function ($, qp, cok) {
 
                 $("#cartprice").html(money());
 
+
+
                 //保存到cookie -->subnum数量  id
                 let sub_p_id = $(e.target).parents("tr").find(".p_name").data().info;
                 updatacookie(sub_p_id, subnum)
             } else if ($(e.target).attr("class") == "add") {
                 let addnum = $(e.target).siblings(".num").val()
                 $(e.target).parents("tr").find("[type=checkbox]").prop("checked", true); //勾选全选
-
                 addnum++
 
                 $(e.target).siblings(".num").val(addnum); //计算数量
@@ -226,7 +253,7 @@ define("cart", ["jquery", "query_product", "cookie"], function ($, qp, cok) {
                 // return false;
             }
         })
-    };
+    })();
 
     //更新cookie
     function updatacookie(id, num) {
@@ -270,7 +297,8 @@ define("cart", ["jquery", "query_product", "cookie"], function ($, qp, cok) {
             } else { //登录了-->删除数据库中数据
                 $.ajax({
                     type: "post",
-                    url: "http://127.0.0.1/1000phone/sk/project/server/rm_product.php",
+                    url: "../../server/rm_product.php",
+                    // url: "http://127.0.0.1/1000phone/sk/project/server/rm_product.php",
                     data: {
                         u_id: status.data.u_id,
                         p_id: $(e.target).parent("td").parents("tr").find(".p_name").data().info,

@@ -167,7 +167,8 @@ define("register", ["jquery", "md5", "idcode", ], function () {
     function submitInfo() {
         let pwdVal = $.md5($("[name=uPwd]").val());
         $.ajax({
-            url: "http://127.0.0.1/1000phone/sk/project/server/register.php",
+            url: "../../server/register.php",
+            // url: "http://127.0.0.1/1000phone/sk/project/server/register.php",
             header: {
                 "Content-Type": "application/x-www-form-urlencoded",
             },
@@ -180,7 +181,7 @@ define("register", ["jquery", "md5", "idcode", ], function () {
         }).then(function (res) {
             if (res==true) {
                 alert("注册成功,点击确认跳转至首页");
-                window.location("../html/login.html")
+                window.location("../index.html")
             } else {
                 alert("注册失败")
             }
@@ -190,7 +191,8 @@ define("register", ["jquery", "md5", "idcode", ], function () {
     // 验证用户名是否存在
     function name_exists() {
         $.ajax({
-            url: "http://127.0.0.1/1000phone/sk/project/server/name_exists.php",
+            url: "../../server/name_exists.php",
+            // url: "http://127.0.0.1/1000phone/sk/project/server/name_exists.php",
             data: {
                 uName: $("[name=uName]").val(),
             }
