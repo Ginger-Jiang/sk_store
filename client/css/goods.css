@@ -99,6 +99,7 @@ body {
 a:hover {
     color: #f19108;
 }
+input,button,select,textarea{outline:none;}
 
 
 /* 顶部通栏 */
@@ -386,6 +387,7 @@ nav .search>p>a {
     padding: 40px 50px 12px 40px;
     background: #fff;
     box-shadow: 0 2px 5px #ccc;
+    position: relative;
 }
 
 #gs_content .contents>.info_l {
@@ -401,10 +403,43 @@ nav .search>p>a {
 
 #gs_content .contents>.info_l>img {
     width: 400px;
-    height: 390px;
+    height: 400px;
     float: left;
     position: relative;
+    display: inline-block;
 }
+/* 遮挡层 */
+#gs_content .contents>.info_l>.zdc{
+    width: 100px;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    display: none;
+}
+
+/* 放大镜区域 */
+#gs_content .contents .showphoto{
+    width: 100px;
+    height: 100px;
+    border: 2px solid #ccc;
+    position: absolute;
+    display: none;
+    overflow: hidden;
+    /* position: relative; */
+    left: 520px;
+}
+#gs_content>div.contents div.showphoto img{
+    width: 800px;
+    height: 800px;
+    position: absolute;
+    /* float: right;
+    width: 530px;
+    min-height: 400px;
+    overflow: hidden; */
+    border: 10px solid red;
+}
+
+
 
 #gs_content>div.contents>div.infog_r {
     float: right;
@@ -412,6 +447,8 @@ nav .search>p>a {
     min-height: 400px;
     overflow: hidden;
 }
+
+
 
 #gs_content>div.contents>div.infog_r>div.name {
     padding: 0 0 20px 20px;
@@ -450,6 +487,7 @@ nav .search>p>a {
 #gs_content > div.contents > div.infog_r > div.buy{
     width: 450px;
     padding: 15px 0 10px 20px;
+    position: relative;
 }
 #gs_content > div.contents > div.infog_r > div.buy>button{
     display: block;
@@ -461,6 +499,17 @@ nav .search>p>a {
     color: #fff;
     background-position: right -597px;
     border: none;
+    position: absolute;
+}
+#gs_content > div.contents > div.infog_r > div.buy>.add{
+    width: 160px;
+    height: 45px;
+    text-align: center;
+    line-height: 45px;
+    position: absolute;
+    top: 0;
+    font-size: 16px;
+    opacity: 1;
 }
 
 

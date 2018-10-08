@@ -103,7 +103,7 @@ define("cart", ["jquery", "query_product", "cookie"], function ($, qp, cok) {
 
     // 点击结算判断是否登录
     (function () {
-        $("#sk_cart_content > div.cart > div.cartprice > p > a").on("click", function () {
+        $("#sk_cart_content > div.cart > div.cartprice > p > #ljjs").on("click", function () {
             if (status == null) {
                 alert("请先登录")
                 window.location = ("../html/login.html");
@@ -133,6 +133,8 @@ define("cart", ["jquery", "query_product", "cookie"], function ($, qp, cok) {
             </tr>
             `
             $('#sk_cart_content > div.cart > div.product_list > table > tbody').append(product_content);
+            del()
+            count()
         })
     }
 
@@ -178,11 +180,12 @@ define("cart", ["jquery", "query_product", "cookie"], function ($, qp, cok) {
             if ($(e.target).attr("type")) {
                 $("#cartprice").html(money())
             }
+            $("#cartprice").html(money())
         })
     })();
 
     //点击加减改变数量与金额
-    (function () {
+    function count() {
         $("tbody").on("click", $("tbody [type=button]"), function (e) {
             if ($(e.target).attr("class") == "sub") {
                 let subnum = $(e.target).siblings(".num").val()
@@ -219,9 +222,11 @@ define("cart", ["jquery", "query_product", "cookie"], function ($, qp, cok) {
                 //保存到cookie -->addnum  id
                 let add_p_id = $(e.target).parents("tr").find(".p_name").data().info;
                 updatacookie(add_p_id, addnum)
+            } else {
+                // return false;
             }
         })
-    })();
+    };
 
     //更新cookie
     function updatacookie(id, num) {
@@ -251,15 +256,40 @@ define("cart", ["jquery", "query_product", "cookie"], function ($, qp, cok) {
     };
 
     // 单行删除功能
-    (function remove() {
-        $("table").on("click", $("tbody .del"), function (e) {
-            if ((e.target) == $(".del")[0]) {
-                //事件委托中的this需要通过事件对象来获得
-                $(e.target).parent("td").parents("tr").remove();
-                return false
+    function del() {
+        $("tbody .del").on("click", function (e) {
+            // 判断是否登录-- > 登录了 删除数据库中数据-- > 没登录 删除cookie中数据
+            if (status == null) { //没登录
+                let cart_cok = JSON.parse($.cookie("cart"));
+                cart_cok.forEach((ele, index) => {
+                    if (ele.p_id == $(e.target).parent("td").parents("tr").find(".p_name").data().info) {
+                        cart_cok.splice(index, 1)
+                    }
+                });
+                $.cookie("cart", JSON.stringify(cart_cok));
+            } else { //登录了-->删除数据库中数据
+                $.ajax({
+                    type: "post",
+                    url: "http://127.0.0.1/1000phone/sk/project/server/rm_product.php",
+                    data: {
+                        u_id: status.data.u_id,
+                        p_id: $(e.target).parent("td").parents("tr").find(".p_name").data().info,
+                    },
+                    dataType: "json",
+                    success: function (res) {
+                        console.log(res);
+
+                    }
+                });
             }
+            //事件委托中的this需要通过事件对象来获得
+            $(e.target).parent("td").parents("tr").remove();
+            // $("thead [type=checkbox]").prop("checked", false);
+            $("#cartprice").html(money())
+            return false
+
         })
-    })();
+    }
 
     //自动全选功能
     function autocheck() {
