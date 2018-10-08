@@ -162,7 +162,7 @@ header .container .r img {
 /* 购物车有商品 */
 #sk_cart_content .cart {
     width: 990px;
-    height: 290px;
+    /* height: 290px; */
     padding-top: 50px;
     margin: 0 auto;
 }

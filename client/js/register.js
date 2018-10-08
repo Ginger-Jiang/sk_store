@@ -179,9 +179,10 @@ define("register", ["jquery", "md5", "idcode", ], function () {
             type: "post",
 
         }).then(function (res) {
-            if (res==true) {
+            if (res == true) {
                 alert("注册成功,点击确认跳转至首页");
-                window.location("../index.html")
+                window.location.href = "../index.html";
+                // window.location("../index.html")
             } else {
                 alert("注册失败")
             }

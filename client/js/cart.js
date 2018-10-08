@@ -215,7 +215,6 @@ define("cart", ["jquery", "query_product", "cookie"], function ($, qp, cok) {
             if ($(e.target).attr("class") == "sub") {
                 let subnum = $(e.target).siblings(".num").val()
                 $(e.target).parents("tr").find("[type=checkbox]").prop("checked", true)
-
                 if (subnum >= 1) {
                     subnum -= 1
                 } else {
@@ -225,30 +224,75 @@ define("cart", ["jquery", "query_product", "cookie"], function ($, qp, cok) {
                     $(e.target).parents("tr").find("[type=checkbox]").prop("checked", false)
                 }
                 $(e.target).siblings(".num").val(subnum); //计算数量
-
                 $(e.target).parents("tr").find(".price").html(subnum * $(e.target).parents("tr").find(".p_price").html()); //计算总金额
-
                 $("#cartprice").html(money());
 
 
+                //判断是否登录
+                if (status != null) {
+                    console.log("登录了");
 
-                //保存到cookie -->subnum数量  id
-                let sub_p_id = $(e.target).parents("tr").find(".p_name").data().info;
-                updatacookie(sub_p_id, subnum)
+                    $.ajax({
+                        url: "../../server/updateCart.php",
+                        // http://127.0.0.1/1000phone/sk/project/server/updateCart.php
+                        type: "post",
+                        data: {
+                            p_id: $(e.target).parents("tr").find(".p_name").data().info, //cpid
+                            u_id: (status).data.u_id, //用户id
+                            p_num: 1, //产品数量
+                        }
+                    }).then(function (res) {
+                        if (res.status == 200) {
+                            // 同步到数据库成功-->删除cookie
+                            $.cookie("cart", null, {
+                                expires: -1
+                            })
+                            // 并且刷新页面
+                            // window.location.reload()
+                        }
+                    })
+                } else {
+
+                    //保存到cookie -->subnum数量  id
+                    let sub_p_id = $(e.target).parents("tr").find(".p_name").data().info;
+                    updatacookie(sub_p_id, subnum)
+                }
+
             } else if ($(e.target).attr("class") == "add") {
                 let addnum = $(e.target).siblings(".num").val()
                 $(e.target).parents("tr").find("[type=checkbox]").prop("checked", true); //勾选全选
                 addnum++
-
                 $(e.target).siblings(".num").val(addnum); //计算数量
-
                 $(e.target).parents("tr").find(".price").html(addnum * $(e.target).parents("tr").find(".p_price").html()); //计算总金额
-
                 $("#cartprice").html(money());
 
-                //保存到cookie -->addnum  id
-                let add_p_id = $(e.target).parents("tr").find(".p_name").data().info;
-                updatacookie(add_p_id, addnum)
+                //判断是否登录
+                if (status != null) {
+                    $.ajax({
+                        url: "../../server/updateCart.php",
+                        // http://127.0.0.1/1000phone/sk/project/server/updateCart.php
+                        type: "post",
+                        data: {
+                            p_id: $(e.target).parents("tr").find(".p_name").data().info, //cpid
+                            u_id: (status).data.u_id, //用户id
+                            p_num: 1, //产品数量
+                        }
+                    }).then(function (res) {
+                        if (res.status == 200) {
+                            // 同步到数据库成功-->删除cookie
+                            $.cookie("cart", null, {
+                                expires: -1
+                            })
+                            // 并且刷新页面
+                            // window.location.reload()
+                        }
+                    })
+                } else {
+                    //保存到cookie -->addnum  id
+                    let add_p_id = $(e.target).parents("tr").find(".p_name").data().info;
+                    updatacookie(add_p_id, addnum)
+                }
+
             } else {
                 // return false;
             }
@@ -335,6 +379,7 @@ define("cart", ["jquery", "query_product", "cookie"], function ($, qp, cok) {
         }
     };
 
+    //出口
     let cart = new Cart();
     return cart
 })
