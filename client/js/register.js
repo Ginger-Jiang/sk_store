@@ -180,8 +180,8 @@ define("register", ["jquery", "md5", "idcode", ], function () {
 
         }).then(function (res) {
             if (res == true) {
-                alert("注册成功,点击确认跳转至首页");
-                window.location.href = "../index.html";
+                alert("注册成功,点击确认跳转至登录页面");
+                window.location.href = "../html/login.html";
                 // window.location("../index.html")
             } else {
                 alert("注册失败")
