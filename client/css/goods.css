@@ -178,7 +178,7 @@ header .login .top ul>li:first-child a+a {
     padding-left: 5px;
 }
 
-header .login .top>ul>li:nth-of-type(2) a:hover::after {
+/* header .login .top>ul>li:nth-of-type(2) a:hover::after {
     transform: rotate(180deg);
 }
 
@@ -186,7 +186,7 @@ header .login .top>ul>li:nth-of-type(2)>a::after {
     content: "▲";
     display: inline-block;
     color: #f19108;
-}
+} */
 
 header .login .top>ul>li:nth-of-type(2) {
     position: relative;
@@ -360,10 +360,9 @@ nav .search>p>a {
     background-position: center;
     position: absolute;
     top: 5px;
-    right: 20px;
+    left: 180px;
     text-align: center;
     line-height: 38px;
-
 }
 
 /* 商品详情页 */

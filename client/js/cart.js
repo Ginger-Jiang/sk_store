@@ -12,8 +12,8 @@
  */
 
 define('cart', ['jquery', 'query_product', 'cookie'], function ($, qp, cok) {
-  let self   = null
-  let status = JSON.parse(sessionStorage.getItem('userinfo'))  // 获取sessionStorage信息 -->用户信息
+  let self = null
+  let status = JSON.parse(sessionStorage.getItem('userinfo')) // 获取sessionStorage信息 -->用户信息
 
   function Cart () {
     self = this
@@ -31,13 +31,13 @@ define('cart', ['jquery', 'query_product', 'cookie'], function ($, qp, cok) {
         // 登录了 cookie没数据-->加载数据库数据
         $.ajax({
           type: 'post',
-          url : '../../server/query_cart.php',
+          url: '../../server/query_cart.php',
           // http://127.0.0.1/1000phone/sk/project/server/query_cart.php
           data: {
             u_id: status.data.u_id
           },
           dataType: 'json',
-          success : function (res) {
+          success: function (res) {
             if (res != []) { // 如果登录了 数据库中有数据
               $('#sk_cart_content > div.inner').addClass('hide')
               $('#sk_cart_content > div.inner').removeClass('show')
@@ -67,9 +67,9 @@ define('cart', ['jquery', 'query_product', 'cookie'], function ($, qp, cok) {
             // http://127.0.0.1/1000phone/sk/project/server/updateCart.php
             type: 'post',
             data: {
-              p_id : ele.p_id,             // cpid
-              u_id : (status).data.u_id,   // 用户id
-              p_num: ele.num               // 产品数量
+              p_id: ele.p_id, // cpid
+              u_id: (status).data.u_id, // 用户id
+              p_num: ele.num // 产品数量
             }
           }).then(function (res) {
             if (res.status == 200) {
@@ -126,7 +126,7 @@ define('cart', ['jquery', 'query_product', 'cookie'], function ($, qp, cok) {
                 </td>
                 <td class="p_name" data-info="${p_id}">${res[0].p_name}</td>
                 <td class="p_price">${res[0].p_price}</td>
-                <td class="p_num"><input type=button class="sub" value=-><input type=text class=num value=${num}><input type=button class="add" value=+></td>
+                <td class="p_num"><input type=button class="sub" value=-><input type=text readonly class=num value=${num}><input type=button class="add" value=+></td>
                 <td class="price">${num * res[0].p_price}</td>
                 <td><a href="#" class="del">删除</a></td>
             </tr>
@@ -157,7 +157,7 @@ define('cart', ['jquery', 'query_product', 'cookie'], function ($, qp, cok) {
   // 删除选中商品功能
   (function () {
     $('#sk_cart_content > div.cart > div.cartprice > p:nth-child(1) > a').on('click', function () {
-      let p_checked = $('#sk_cart_content > div.cart > div.product_list > table > tbody > tr [type=checkbox]')  // 所有商品的input
+      let p_checked = $('#sk_cart_content > div.cart > div.product_list > table > tbody > tr [type=checkbox]') // 所有商品的input
       jQuery.each(p_checked, function (index, val) { // jq遍历对象
         if ($(val).prop('checked')) {
           // 判断是否登录-- > 登录了 删除数据库中数据-- > 没登录 删除cookie中数据
@@ -172,14 +172,14 @@ define('cart', ['jquery', 'query_product', 'cookie'], function ($, qp, cok) {
           } else { // 登录了-->删除数据库中数据
             $.ajax({
               type: 'post',
-              url : '../../server/rm_product.php',
+              url: '../../server/rm_product.php',
               // url: "http://127.0.0.1/1000phone/sk/project/server/rm_product.php",
               data: {
                 u_id: status.data.u_id,
                 p_id: $(val).parent('td').parents('tr').find('.p_name').data().info
               },
               dataType: 'json',
-              success : function (res) {
+              success: function (res) {
                 console.log(res)
               }
             })
@@ -231,9 +231,9 @@ define('cart', ['jquery', 'query_product', 'cookie'], function ($, qp, cok) {
             // http://127.0.0.1/1000phone/sk/project/server/updateCart.php
             type: 'post',
             data: {
-              p_id : $(e.target).parents('tr').find('.p_name').data().info,   // cpid
-              u_id : (status).data.u_id,                                      // 用户id
-              p_num: 1                                                        // 产品数量
+              p_id: $(e.target).parents('tr').find('.p_name').data().info, // cpid
+              u_id: (status).data.u_id, // 用户id
+              p_num: 1 // 产品数量
             }
           }).then(function (res) {
             if (res.status == 200) {
@@ -265,9 +265,9 @@ define('cart', ['jquery', 'query_product', 'cookie'], function ($, qp, cok) {
             // http://127.0.0.1/1000phone/sk/project/server/updateCart.php
             type: 'post',
             data: {
-              p_id : $(e.target).parents('tr').find('.p_name').data().info,   // cpid
-              u_id : (status).data.u_id,                                      // 用户id
-              p_num: 1                                                        // 产品数量
+              p_id: $(e.target).parents('tr').find('.p_name').data().info, // cpid
+              u_id: (status).data.u_id, // 用户id
+              p_num: 1 // 产品数量
             }
           }).then(function (res) {
             if (res.status == 200) {
@@ -307,8 +307,8 @@ define('cart', ['jquery', 'query_product', 'cookie'], function ($, qp, cok) {
   function money () {
     // 总金额-->拿到所有选中的商品-->遍历计算价格
     // let tr = $("#sk_cart_content > div.cart > div.product_list > table > tbody > tr > td.price");
-    let p_checked = $('#sk_cart_content > div.cart > div.product_list > table > tbody > tr [type=checkbox]')  // 所有商品的input
-    let money     = 0
+    let p_checked = $('#sk_cart_content > div.cart > div.product_list > table > tbody > tr [type=checkbox]') // 所有商品的input
+    let money = 0
     jQuery.each(p_checked, function (index, val) { // jq遍历对象
       if ($(val).prop('checked')) {
         money += $(val).parents('tr').find('.price').text() - 0
@@ -332,14 +332,14 @@ define('cart', ['jquery', 'query_product', 'cookie'], function ($, qp, cok) {
       } else { // 登录了-->删除数据库中数据
         $.ajax({
           type: 'post',
-          url : '../../server/rm_product.php',
+          url: '../../server/rm_product.php',
           // url: "http://127.0.0.1/1000phone/sk/project/server/rm_product.php",
           data: {
             u_id: status.data.u_id,
             p_id: $(e.target).parent('td').parents('tr').find('.p_name').data().info
           },
           dataType: 'json',
-          success : function (res) {
+          success: function (res) {
             console.log(res)
           }
         })
@@ -355,7 +355,7 @@ define('cart', ['jquery', 'query_product', 'cookie'], function ($, qp, cok) {
   // 自动全选功能
   function autocheck () {
     let input = $('tbody [type=checkbox]')
-    let flag  = true
+    let flag = true
     $.each(input, function (index, ele) {
       if ($(ele).prop('checked') != true) {
         flag = false
